@@ -1,0 +1,6 @@
+table Icon
+  Caption: Calibre AppImage 
+  Icon: /myHD_scripts/Idesk/App_Store/calibre-A/calibre-A-Idesk.png
+  Command[0]: /myHD_scripts/Idesk/App_Store/calibre-A/calibre-A.sh
+  Command[1]: /myHD_scripts/Idesk/App_Store/idesk_mngt.sh calibre-A
+end

@@ -1,0 +1,6 @@
+table Icon
+  Caption: Youtube
+  Icon: /myHD_scripts/Idesk/App_Store/youtube/youtube-Idesk.png
+  Command[0]: //myHD_scripts/Idesk/App_Store/youtube/youtube.sh
+  Command[1]: //myHD_scripts/Idesk/App_Store/idesk_mngt.sh youtube
+end

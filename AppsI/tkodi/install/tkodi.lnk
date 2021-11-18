@@ -1,0 +1,6 @@
+table Icon
+  Caption: tkodi 18+
+  Icon: /myHD_scripts/Idesk/App_Store/tkodi/tkodi-Idesk.png
+  Command[0]: //myHD_scripts/Idesk/App_Store/tkodi/tkodi.sh
+  Command[1]: //myHD_scripts/Idesk/App_Store/idesk_mngt.sh tkodi
+end

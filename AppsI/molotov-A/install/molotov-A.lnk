@@ -1,0 +1,6 @@
+table Icon
+  Caption: molotov AppImage 
+  Icon: /myHD_scripts/Idesk/App_Store/molotov-A/molotov-A-Idesk.png
+  Command[0]: /myHD_scripts/Idesk/App_Store/molotov-A/molotov-A.sh
+  Command[1]: /myHD_scripts/Idesk/App_Store/idesk_mngt.sh molotov-A
+end

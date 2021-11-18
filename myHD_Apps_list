@@ -1,0 +1,13 @@
+MH-test:1.9.9:0.9.4:User terminal (astr)
+MH-kodi17:17.6:0.9.4:Private Kodi17 all binaries addons
+MH-kodi18:18.1:0.9.4:Last Ubuntu Kodi18:kodi
+MH-kodi19:19:0.9.4:Change icon after internal update from Kodi18:kodi
+MH16-pmp:2.58.0:0.9.4:Plex Media Player
+MH18-pmp:2.58.0:1.0.0:Plex Media Player
+MH20-pmp:2.58.0:1.0.0:Plex Media Player
+MH-chrome:1.1:0.9.4:last stable version for Ubuntu:google-chrome-stable
+MH-kaku:2.0.2.1:0.9.4:Deb install for Ubuntu:kaku
+MH-netflix:1.0:0.9.4:Netflix through Chrome (same as MH-chrome)
+MH-primevideo:1.0:0.9.4:PrimeVideo through Chrome (same as MH-chrome)
+MH-spotify:1.0:1.0.0:Spotify through Chrome (same as MH-chrome)
+MH-stremio:4.4.52:1.0.2:Stremio use CTRL-x to exit and Wait install is long (12 mn on AS5002T):stremio

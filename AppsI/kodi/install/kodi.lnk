@@ -1,0 +1,6 @@
+table Icon
+  Caption: kodi 18+
+  Icon: /myHD_scripts/Idesk/App_Store/kodi/kodi-Idesk.png
+  Command[0]: //myHD_scripts/Idesk/App_Store/kodi/kodi.sh
+  Command[1]: //myHD_scripts/Idesk/App_Store/idesk_mngt.sh kodi
+end

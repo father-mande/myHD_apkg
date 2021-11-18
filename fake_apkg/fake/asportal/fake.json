@@ -1,0 +1,13 @@
+{
+    "app":{
+        "name":"MH%UBU%-%NAME%",
+        "icon":"/usr/local/AppCentral/MH%UBU%-%NAME%/asportal/MH%UBU%-%NAME%.png",
+        "envi":"/usr/local/AppCentral/MH%UBU%-%NAME%/CONTROL/env.sh",
+        "exec":"sh -c /usr/local/AppCentral/MH%UBU%-%NAME%/run_MH%UBU%-%NAME%.sh",
+        "desc":"myHD application : MH%UBU%-%NAME% in Ubuntu environment",
+        "show":"true",
+        "ctrl":"%CTRL%"
+    }
+}
+
+
