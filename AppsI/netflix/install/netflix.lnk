@@ -1,0 +1,6 @@
+table Icon
+  Caption: Netflix
+  Icon: /myHD_scripts/Idesk/App_Store/netflix/netflix-Idesk.png
+  Command[0]: //myHD_scripts/Idesk/App_Store/netflix/netflix.sh
+  Command[1]: //myHD_scripts/Idesk/App_Store/idesk_mngt.sh netflix
+end

@@ -59,9 +59,10 @@ FILENAME=$(echo "${1%%.*}")
 
 convert "$1" -resize 130x130 tempo.png
 NAME=$(basename "$1" .png)
+rm -f ${NAME}-Idesk.png
 convert "$2" tempo.png -gravity center -compose over -composite ${NAME}-Idesk.png
 
-# rm tempo.png
+rm tempo.png
 echo "done"
 
 

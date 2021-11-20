@@ -8,9 +8,10 @@ if [ -z "${1}" ] ; then
 fi
 
 if [ -e "${1}.png" ] ; then
-	if [ $? -ne 0 ] ; then
+	if [ ! -e /usr/builtin/bin/convert  ] ; then
 		ln -s /usr/builtin/bin/magick /usr/builtin/bin/convert
 	fi
+	rm -f ${1}-enable.png ${1}-disable.png
 	/usr/builtin/bin/convert "${1}.png" -resize 90x90 ${1}-enable.png
 	/usr/builtin/bin/convert "${1}.png" -resize 90x90 -colorspace Gray ${1}-disable.png
 else
