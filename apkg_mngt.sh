@@ -139,6 +139,12 @@ verify_cfg(){
 			echo "NOT IDESK Caption for APKG replace by ${APKG_NAME}"
 			CAPTION="${APKG_NAME}"
 		fi
+		
+		URL=$(/usr/bin/confutil -get ${APPS_PATH}/${APKG_NAME}/${APKG_NAME}.cfg ${APKG_NAME} url)
+		if [ $? -ne 0 ] ; then
+			echo "NO URL defined for this App.  ${APKG_NAME}"
+			URL=""
+		fi
 		# UBU=$(/usr/bin/confutil -get ${APPS_PATH}/${APKG_NAME}/${APKG_NAME}.cfg ${APKG_NAME} UBU)
 		## UBU can be null or contains 16 for Ubuntu 16.04 or 18 for Ubuntu 18.04
 		# if [ ! -z "$UBU" ] ; then
@@ -296,8 +302,8 @@ create)
 		if [ ! -e ${APPS_PATH}/${APKG_NAME}/install/install.inc ] ; then
 			cp -p ${APPSI_PATH}/install.inc ${APPS_PATH}/${APKG_NAME}/install/
 		fi
-		if [ ! -e ${APPS_PATH}/${APKG_NAME}/install/${APKG_NAME}/lnk ] ; then
-			cp -p ${APPSI_PATH}/generic.lnk ${APPS_PATH}/${APKG_NAME}/install/${APKG_NAME}/lnk
+		if [ ! -e ${APPS_PATH}/${APKG_NAME}/install/${APKG_NAME}.lnk ] ; then
+			cp -p ${APPSI_PATH}/generic.lnk ${APPS_PATH}/${APKG_NAME}/install/${APKG_NAME}.lnk
 		fi
 		cp -p ${APPSI_PATH}/install.sh ${APPS_PATH}/${APKG_NAME}/install/
 		cp -p ${APPS_PATH}/${APKG_NAME}/install/${APKG_NAME}.sh ${APPS_PATH}/${APKG_NAME}/${APKG_NAME}.sh.bak
@@ -315,6 +321,10 @@ create)
 		grep -q "^APPIMAGE=" ${APPS_PATH}/${APKG_NAME}/install/${APKG_NAME}.sh
 		if [ $? -eq 0 ] ; then
 			sed -i "s/%APPIMAGE%/${APPIMAGE}/g" ${APPS_PATH}/${APKG_NAME}/install/${APKG_NAME}.sh
+		fi
+		grep -q "^URL=" ${APPS_PATH}/${APKG_NAME}/install/${APKG_NAME}.sh
+		if [ $? -eq 0 ] ; then
+			sed -i "s,%URL%,${URL},g" ${APPS_PATH}/${APKG_NAME}/install/${APKG_NAME}.sh
 		fi
 		
 		if [ ! -e ${GEN_APKG_PATH}/${APKG_NAME}/MH${UBU}-${APKG_NAME}/install ] ; then
