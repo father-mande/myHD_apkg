@@ -1,0 +1,6 @@
+table Icon
+  Caption: %CAPTION%
+  Icon: /myHD_scripts/Idesk/App_Store/%NAME%/%NAME%-Idesk.png
+  Command[0]: //myHD_scripts/Idesk/App_Store/%NAME%/%NAME%.sh
+  Command[1]: //myHD_scripts/Idesk/App_Store/idesk_mngt.sh %NAME%
+end

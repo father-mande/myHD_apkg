@@ -71,14 +71,14 @@ verify_cfg(){
 		fi
 		echo "Version forced to 1.0.99 ; default icon ${APKG_NAME}.png and default shell script ${APKG_NAME}.sh are used"
 	else
-		VER=$(/usr/bin/confutil -get ${APPS_PATH}/${APKG_NAME}/${APKG_NAME}.cfg ${APKG_NAME} Version)
+		VER="$(/usr/bin/confutil -get ${APPS_PATH}/${APKG_NAME}/${APKG_NAME}.cfg ${APKG_NAME} Version)"
 		if [ $? -ne 0 ] ; then
 			echo "Version not provide force fake one"
 			VER=1.1
 		fi
 		#######################
 	  if [ ${UBU} = "I" ] ; then
-		ICONIDESK=$(/usr/bin/confutil -get ${APPS_PATH}/${APKG_NAME}/${APKG_NAME}.cfg ${APKG_NAME} iconIdesk)
+		ICONIDESK="$(/usr/bin/confutil -get ${APPS_PATH}/${APKG_NAME}/${APKG_NAME}.cfg ${APKG_NAME} iconIdesk)"
 		if [ $? -ne 0 ] ; then
 		### must be changed to use a default icon ...
 			echo "Hum! Idesk icon is not defined in .cfg "
@@ -89,7 +89,7 @@ verify_cfg(){
 			exit 1
 		fi
 	  else	
-		PNG=$(/usr/bin/confutil -get ${APPS_PATH}/${APKG_NAME}/${APKG_NAME}.cfg ${APKG_NAME} icon256)
+		PNG="$(/usr/bin/confutil -get ${APPS_PATH}/${APKG_NAME}/${APKG_NAME}.cfg ${APKG_NAME} icon256)"
 		if [ $? -ne 0 ] ; then
 			PNG=${APKG_NAME}.png
 			if [ ! -e ${APPS_PATH}/${APKG_NAME}/${PNG} ] ; then
@@ -104,7 +104,7 @@ verify_cfg(){
 			fi
 		fi
 		
-		FOND=$(/usr/bin/confutil -get ${APPS_PATH}/${APKG_NAME}/${APKG_NAME}.cfg ${APKG_NAME} Fond)
+		FOND="$(/usr/bin/confutil -get ${APPS_PATH}/${APKG_NAME}/${APKG_NAME}.cfg ${APKG_NAME} Fond)"
 		if [ $? -ne 0 ] ; then
 			echo "force light gray background for Asportal icon"
 			FOND=fond_gris_clair.png
@@ -115,23 +115,29 @@ verify_cfg(){
 			echo "===== USE THE DEFAULT ${APPSI_PATH}/install.sh "
 		fi
 		
-		CTRL=$(/usr/bin/confutil -get ${APPS_PATH}/${APKG_NAME}/${APKG_NAME}.cfg ${APKG_NAME} Ctrl)
+		CTRL="$(/usr/bin/confutil -get ${APPS_PATH}/${APKG_NAME}/${APKG_NAME}.cfg ${APKG_NAME} Ctrl)"
 		if [ $? -ne 0 ] ; then
 			echo "force default as CTRL"
 			CTRL="default"
 		fi
 		
 		
-		CONFIG_JSON=$(/usr/bin/confutil -get ${APPS_PATH}/${APKG_NAME}/${APKG_NAME}.cfg ${APKG_NAME} config_json)
+		CONFIG_JSON="$(/usr/bin/confutil -get ${APPS_PATH}/${APKG_NAME}/${APKG_NAME}.cfg ${APKG_NAME} config_json)"
 		if [ $? -ne 0 ] ; then
 			echo "Use config2.json for generated config.json"
 			CONFIG_JSON=""
 		fi
 		
-		APPIMAGE=$(/usr/bin/confutil -get ${APPS_PATH}/${APKG_NAME}/${APKG_NAME}.cfg ${APKG_NAME} appimage)
+		APPIMAGE="$(/usr/bin/confutil -get ${APPS_PATH}/${APKG_NAME}/${APKG_NAME}.cfg ${APKG_NAME} appimage)"
 		if [ $? -ne 0 ] ; then
 			echo "NOT APKG with AppImage exec"
 			APPIMAGE=""
+		fi
+		
+		CAPTION=$(/usr/bin/confutil -get ${APPS_PATH}/${APKG_NAME}/${APKG_NAME}.cfg ${APKG_NAME} caption)
+		if [ $? -ne 0 ] ; then
+			echo "NOT IDESK Caption for APKG replace by ${APKG_NAME}"
+			CAPTION="${APKG_NAME}"
 		fi
 		# UBU=$(/usr/bin/confutil -get ${APPS_PATH}/${APKG_NAME}/${APKG_NAME}.cfg ${APKG_NAME} UBU)
 		## UBU can be null or contains 16 for Ubuntu 16.04 or 18 for Ubuntu 18.04
@@ -290,12 +296,20 @@ create)
 		if [ ! -e ${APPS_PATH}/${APKG_NAME}/install/install.inc ] ; then
 			cp -p ${APPSI_PATH}/install.inc ${APPS_PATH}/${APKG_NAME}/install/
 		fi
+		if [ ! -e ${APPS_PATH}/${APKG_NAME}/install/${APKG_NAME}/lnk ] ; then
+			cp -p ${APPSI_PATH}/generic.lnk ${APPS_PATH}/${APKG_NAME}/install/${APKG_NAME}/lnk
+		fi
 		cp -p ${APPSI_PATH}/install.sh ${APPS_PATH}/${APKG_NAME}/install/
 		cp -p ${APPS_PATH}/${APKG_NAME}/install/${APKG_NAME}.sh ${APPS_PATH}/${APKG_NAME}/${APKG_NAME}.sh.bak
 		cp -p ${APPS_PATH}/${APKG_NAME}/install/install.inc ${APPS_PATH}/${APKG_NAME}/install.inc.bak
 		sed -i "s/%NAME%/${APKG_NAME}/g" ${APPS_PATH}/${APKG_NAME}/install/install.sh
-		sed -i "s/%NAME%/${APKG_NAME}/g" ${APPS_PATH}/${APKG_NAME}/install/install.inc
 		sed -i "s/%UBU%/${UBU}/g" ${APPS_PATH}/${APKG_NAME}/install/install.sh
+		
+		sed -i "s/%NAME%/${APKG_NAME}/g" ${APPS_PATH}/${APKG_NAME}/install/install.inc
+		
+		sed -i "s/%NAME%/${APKG_NAME}/g" ${APPS_PATH}/${APKG_NAME}/install/${APKG_NAME}.lnk
+		sed -i "s/%CAPTION%/${CAPTION}/g" ${APPS_PATH}/${APKG_NAME}/install/${APKG_NAME}.lnk
+
 		sed -i "s/%NAME%/${APKG_NAME}/g" ${APPS_PATH}/${APKG_NAME}/install/${APKG_NAME}.sh
 		
 		grep -q "^APPIMAGE=" ${APPS_PATH}/${APKG_NAME}/install/${APKG_NAME}.sh
