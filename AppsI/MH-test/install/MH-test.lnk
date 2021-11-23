@@ -1,0 +1,6 @@
+table Icon
+  Caption: "Asustor MH-test"
+  Icon: /myHD_scripts/Idesk/App_Store/MH-test/MH-test-Idesk.png
+  Command[0]: //myHD_scripts/Idesk/App_Store/MH-test/MH-test.sh
+  Command[1]: //myHD_scripts/Idesk/App_Store/idesk_mngt.sh MH-test
+end

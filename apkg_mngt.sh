@@ -145,6 +145,12 @@ verify_cfg(){
 			echo "NO URL defined for this App.  ${APKG_NAME}"
 			URL=""
 		fi
+		
+		GROUP=$(/usr/bin/confutil -get ${APPS_PATH}/${APKG_NAME}/${APKG_NAME}.cfg ${APKG_NAME} group)
+		if [ $? -ne 0 ] ; then
+			echo "NO group for Asportal defined for this App.  ${APKG_NAME}"
+			GROUP=""
+		fi
 		# UBU=$(/usr/bin/confutil -get ${APPS_PATH}/${APKG_NAME}/${APKG_NAME}.cfg ${APKG_NAME} UBU)
 		## UBU can be null or contains 16 for Ubuntu 16.04 or 18 for Ubuntu 18.04
 		# if [ ! -z "$UBU" ] ; then
@@ -274,6 +280,7 @@ create)
 			exit 1
 		fi 
 	else
+		
 		if [ -e ${APPS_PATH}/${APKG_NAME}/${APKG_NAME}-Idesk.png ] ; then
 			cp -p ${APPS_PATH}/${APKG_NAME}/${APKG_NAME}-Idesk.png ${GEN_APKG_PATH}/${APKG_NAME}/MH${UBU}-${APKG_NAME}/idesk
 		else
@@ -317,6 +324,7 @@ create)
 		sed -i "s/%CAPTION%/${CAPTION}/g" ${APPS_PATH}/${APKG_NAME}/install/${APKG_NAME}.lnk
 
 		sed -i "s/%NAME%/${APKG_NAME}/g" ${APPS_PATH}/${APKG_NAME}/install/${APKG_NAME}.sh
+		sed -i "s/%GROUP%/${GROUP}/g" ${APPS_PATH}/${APKG_NAME}/install/${APKG_NAME}.sh
 		
 		grep -q "^APPIMAGE=" ${APPS_PATH}/${APKG_NAME}/install/${APKG_NAME}.sh
 		if [ $? -eq 0 ] ; then
