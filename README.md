@@ -16,7 +16,7 @@ XX=**16**, **18** or **20** for Ubuntu version in myHD OR **I** for Idesk(20.04)
     - **MH-test** is to show how calling an Asportal application from myHD Idesk ... not all is possible because for ex. Asportal firefox kill all pulseaudio server, so this require to patch the shell or restart myHD pulseaudio server after using Asportal/Firefox (I don't understand why Asustor kill all when it's possible to kill it for Asportal only ????  )
 6. create icons, got to genere_icons/save and put a **SQUARE** size icons (any size but result is resized to 90x90 and 130x130 for all require icons) also select a background for the Idesk icon; Then use the script to generate the icons :  
 **./create_idesk_icon.sh APKG.png ../back/fond_bleu_idesk.png** (other colors are provide), this generate icon for A.D.M. / AppCentral and the Idesk icon.  
-When it's ready ... copy icons : **cp APKG*.png ../AppsI/APKG_NAME/**
+When it's ready ... copy icons : **cp APKG\*.png ../AppsI/APKG_NAME/**
 7. return to myHD_apkg/AppsI/APKG_NAME and create **APKG_NAME.cfg** based on example (I write later more explain)
 8. create an install folder, inside only file require are **APKG_NAME.sh** (launcher) and **install.inc** (even an empty file is created if not provide), the other files are created automatically : ***install.sh install.inc APKG_NAME.lnk*** (Idesk icon definition)
 9. optional, put files to add in files/APKG_NAME/filesI/
