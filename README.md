@@ -21,7 +21,23 @@ When it's ready ... copy icons : **cp APKG\*.png ../AppsI/APKG_NAME/**
 8. create an install folder, inside only file require are **APKG_NAME.sh** (launcher) and **install.inc** (even an empty file is created if not provide), the other files are created automatically : ***install.sh install.inc APKG_NAME.lnk*** (Idesk icon definition)
 9. optional, put files to add in files/APKG_NAME/filesI/
 10. generate the **APKG_NAME.apk** for install manually or using AppCentral  
-    - in myHD_apkg folder : **./apkg_mngt.sh create APKG_NAME I** (I is for Idesk target)  
-  
+    - in myHD_apkg folder : **./apkg_mngt.sh create APKG_NAME I** (I is for Idesk target)      
+
+**example of APKG.cfg** (after ... it's comment here not in real) 
+
+    [%NAME%]  ... APKG name
+    Version = 1.1  
+    Shell = %NAME%.sh  ...  bash start shell for APKG
+    Fond = fond_noir.png  ... only for Asportal NOR for Idesk
+    iconIdesk = %NAME%-Idesk.png  ... only for Idesk
+    caption = "Any text"  ... text under icon in Idesk
+    Ctrl = xbmc  ... only Asportal remote control
+    %% config_json = filename  ... specific depends (ex. firefox added to myHD)
+    %% appimage = xxxxxx.AppImage  ... AppImage in files/APKG/filesI/appimage
+    url = "https://support.asustor.com/" ... url for chrome or firefox direct call
+    
+**End of APKG.cfg file example**
+
+
 More details will be provide later.  
 Philippe.
