@@ -310,6 +310,7 @@ create)
 			cp -p ${APPSI_PATH}/install.inc ${APPS_PATH}/${APKG_NAME}/install/
 		fi
 		if [ ! -e ${APPS_PATH}/${APKG_NAME}/install/${APKG_NAME}.lnk ] ; then
+			USE_GENERIC_LNK="TRUE"
 			cp -p ${APPSI_PATH}/generic.lnk ${APPS_PATH}/${APKG_NAME}/install/${APKG_NAME}.lnk
 		fi
 		cp -p ${APPSI_PATH}/install.sh ${APPS_PATH}/${APKG_NAME}/install/
@@ -351,6 +352,9 @@ create)
 		#mv ${APPS_PATH}/${APKG_NAME}/install.sh.bak ${APPS_PATH}/${APKG_NAME}/install/install.sh
 		mv ${APPS_PATH}/${APKG_NAME}/install.inc.bak ${APPS_PATH}/${APKG_NAME}/install/install.inc
 		mv ${APPS_PATH}/${APKG_NAME}/${APKG_NAME}.sh.bak ${APPS_PATH}/${APKG_NAME}/install/${APKG_NAME}.sh
+		if [ "USE_GENERIC_LNK" = "TRUE" ] ; then
+			rm -f ${APPS_PATH}/${APKG_NAME}/install/${APKG_NAME}.lnk
+		fi
 		#
 		if [ -e ${FILE_PATH}/${APKG_NAME}/files${UBU} ] ; then
 			mkdir ${GEN_APKG_PATH}/${APKG_NAME}/MH${UBU}-${APKG_NAME}/install/files

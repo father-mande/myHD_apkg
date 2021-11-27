@@ -1,0 +1,6 @@
+table Icon
+  Caption: "Amazon primevideo"
+  Icon: /myHD_scripts/Idesk/App_Store/primevideo/primevideo-Idesk.png
+  Command[0]: //myHD_scripts/Idesk/App_Store/primevideo/primevideo.sh
+  Command[1]: //myHD_scripts/Idesk/App_Store/idesk_mngt.sh primevideo
+end
