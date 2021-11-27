@@ -21,7 +21,9 @@ test_engine_running(){
 	#ps -eaf | grep jchroot | grep -q ${NS_HOST}
 	#if [ $? -eq 0 ] ; then
 	#	echo "Hum! ${NS_HOST} is started "
-	if [ "$(/usr/local/bin/${NS_HOST} is_myHD_running)" = "run" ] ; then
+	#if [ "$(/usr/local/bin/${NS_HOST} is_myHD_running)" = "run" ] ; then
+	ps -eaf | grep -v grep | grep -q /lib/systemd/systemd-logind
+	if [ $? -eq 0 ] ; then
 		echo "==== ${NS_HOST} is running "
 	else
 		/usr/sbin/syslog -g 0 -l 2 --user admin --event "${NAME} can not be installed if ${NS_HOST} is not running "
@@ -30,7 +32,9 @@ test_engine_running(){
 }
 
 test_idesk_is_set(){
-	if [ "$(/usr/local/bin/${NS_HOST} is_idesk_set)" = "set" ] ; then
+	REP=$(/usr/bin/confutil -get ${ENGINE_PATH}/${NS_HOST}.conf idesk IDESK)	
+	if [ "${REP}" = "TRUE" ] ; then
+	# if [ "$(/usr/local/bin/${NS_HOST} is_idesk_set)" = "set" ] ; then
 		echo "==== Idesk in ${NS_HOST} is set"
 	else
 		/usr/sbin/syslog -g 0 -l 2 --user admin --event "${NAME} can not be installed if Idesk for ${NS_HOST} is not set"
